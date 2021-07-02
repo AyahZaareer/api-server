@@ -1,7 +1,7 @@
 'use stict';
 const express = require('express');
 const DataManeger = require('../models/data-collectin-class');
-const ClothesModel = require('../models/food');
+const ClothesModel = require('../models/clothrs');
 
 
 const newData = new DataManeger(ClothesModel);//we didn't interacte directly with mongooes .for example we use .creat() to invoke .save()
@@ -15,16 +15,19 @@ route.post('/', creatclothes);
 route.put('/:id', updateclothes);
 route.delete('/:id', deleteclothes);
 
-async function getclothes(res, req, next) {
+async function getclothes(req, res, next) {
     try {
+
         const obj = await newData.read();
-        res.json(obj);
+        console.log('get', obj);
+        res.json({ obj });
+        console.log(res.json({ obj }));
     } catch (err) {
         next(err);
     }
 }
 
-async function getclothesById(res, req, next) {
+async function getclothesById(req, res, next) {
     try {
         const obj = await newDate.read(req.params.id);
         res.json(obj);
@@ -33,7 +36,7 @@ async function getclothesById(res, req, next) {
     }
 }
 
-async function creatclothes(res, req, next) {
+async function creatclothes(req, res, next) {
     try {
         const clothesData = req.body;
         const obj = await newData.creat(clothesData);
@@ -44,7 +47,7 @@ async function creatclothes(res, req, next) {
 }
 
 
-async function updateclothes(res, req, next) {
+async function updateclothes(req, res, next) {
     try {
         const clothesData = req.body;
         const obj = await newData.update(req.params.id, clothesData);
@@ -54,7 +57,7 @@ async function updateclothes(res, req, next) {
     }
 }
 
-async function deleteclothes(res, req, next) {
+async function deleteclothes(req, res, next) {
     try {
         const obj = await newDate.delete(req.params.id);
         res.json(obj);

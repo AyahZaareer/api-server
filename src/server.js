@@ -13,7 +13,7 @@ const logger = require('./middleware/logger');
 app.use(express.json());
 app.use(cors());
 
-app.use(logger);
+// app.use(logger);
 
 app.get('/', (req, res) => {
     res.send('Holle from server');

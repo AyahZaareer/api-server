@@ -4,7 +4,7 @@ const DataManeger = require('../models/data-collectin-class');
 const FoodModel = require('../models/food');
 
 
-const newData = new DataManeger(FoodModel);//we didn't interacte directly with mongooes .for example we use .creat() to invoke .save()
+const foodData = new DataManeger(FoodModel);//we didn't interacte directly with mongooes .for example we use .creat() to invoke .save()
 
 const route = express.Router();
 
@@ -15,28 +15,28 @@ route.post('/', creatFood);
 route.put('/:id', updateFood);
 route.delete('/:id', deleteFood);
 
-async function getFood(res, req, next) {
+async function getFood(req, res, next) {
     try {
-        const obj = await newData.read();
+        const obj = await foodData.read();
         res.json(obj);
     } catch (err) {
         next(err);
     }
 }
 
-async function getFoodById(res, req, next) {
+async function getFoodById(req, res, next) {
     try {
-        const obj = await newDate.read(req.params.id);
+        const obj = await foodData.read(req.params.id);
         res.json(obj);
     } catch (err) {
         next(err);
     }
 }
 
-async function creatFood(res, req, next) {
+async function creatFood(req, res, next) {
     try {
-        const foodData = req.body;
-        const obj = await newData.creat(foodData);
+        const food = req.body;
+        const obj = await foodData.creat(food);
         res.status(201).json(obj);
     } catch (err) {
         next(err);
@@ -44,19 +44,19 @@ async function creatFood(res, req, next) {
 }
 
 
-async function updateFood(res, req, next) {
+async function updateFood(req, res, next) {
     try {
-        const foodData = req.body;
-        const obj = await newData.update(req.params.id, foodData);
+        const food = req.body;
+        const obj = await foodData.update(req.params.id, food);
         res.status(201).json(obj);
     } catch (err) {
         next(err);
     }
 }
 
-async function deleteFood(res, req, next) {
+async function deleteFood(req, res, next) {
     try {
-        const obj = await newDate.delete(req.params.id);
+        const obj = await foodData.delete(req.params.id);
         res.json(obj);
     } catch (err) {
         next(err);
