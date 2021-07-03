@@ -18,8 +18,8 @@
 2.npm init -y.
 3.npm exprees,dotenv,supertest,mongooes,cors,supuergooes,route,uuid.
 
-## Handles Erorr:
-##### Endpoint:
+
+### Endpoint:
 - (/api/vi/food):
   - GET to read data
   -  POST to creat data
