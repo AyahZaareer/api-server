@@ -29,7 +29,7 @@ async function getclothes(req, res, next) {
 
 async function getclothesById(req, res, next) {
     try {
-        const obj = await newDate.read(req.params.id);
+        const obj = await newData.read(req.params.id);
         res.json(obj);
     } catch (err) {
         next(err);
@@ -59,7 +59,7 @@ async function updateclothes(req, res, next) {
 
 async function deleteclothes(req, res, next) {
     try {
-        const obj = await newDate.delete(req.params.id);
+        const obj = await newData.delete(req.params.id);
         res.json(obj);
     } catch (err) {
         next(err);
